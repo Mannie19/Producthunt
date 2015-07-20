@@ -1,36 +1,42 @@
 <p id="notice"><%= notice %></p>
 
+<section class="day">
+        
+  <% @posts.each do |date, posts|%>
+
+    <header class="day-header">
+      <h2>Today <time datetime="<%= date.to_s %>"><%= date.strftime('%e %B') %></time>
+      </h2>
+    </header>
+
   <% @posts.each do |post| %>
 
-<div class="post group grow">
-    <div class="vote-wrap">
-            &#9650;
-        <br>
-        <span class="votes">115</span>
+    <div class="post group">
+      <%= button_to upvote_post_path(post), class: "upvote" do %>
+              &#9650;
+          <br>
+          <span class="votes"><%= post.votes.count %></span>
+      <% end %>
+
+      <%= link_to post.link, class: 'post-content', target: '_blank' do %>
+        <h3 class="post-title"><%= post.title %></h3>   
+        <p class="post-description"><%= post.description %></p>
+      <% end %>
+
+      <div class="post-meta">
+        <span class="post-comments">99</span>
+          <img src="http://tscpl.org/wp-content/uploads/2013/10/treehouse_logo.png" class="post-creator">
+      </div>
+
+      <div>
+          <%= link_to 'Edit', edit_post_path(post) %>
+          | <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+
     </div>
 
-    <div class="post-content">
-                <h3 class="post-title"><%= post.title %></h3>
-         
-      <p class="post-description"><%= post.description %></p>
-    </div>
-
-    <div class="post-meta">
-      <span class="post-comments">99</span>
-
-        <img src="http://tscpl.org/wp-content/uploads/2013/10/treehouse_logo.png" class="post-creator">
-    </div>
-
-      <tr>
-        
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td> | <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-
-</div>
-
-     
   <% end %>
+</section>
 
 
 <button type="button" class="btn btn-danger">

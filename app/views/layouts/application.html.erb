@@ -24,21 +24,21 @@
           <h1>Product Hunt</h1>
         </div>
          <div class="searchicon">
-           <span class="icon"><i class="fa fa-search"></i></span>
-           <input name="q" type="text" class="search" placeholder="Search for a product..." />
+          <i class="fa fa-search search-icon"></i>
+          <input type="search" class="search-input" placeholder="Search for a product..." />
+          <i class="fa fa-close search-reset"></i>
          </div>  
         
         <%= link_to '+', new_post_path, class:'add-new-post' %>
 
-        <a href="#" class="login">Log in</a>
-        <% if user_signed_in? %>
+        <a href="#" class="login"><% if user_signed_in? %>
           Logged in as <strong><%= current_user.email %></strong>.
           <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
           <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
         <% else %>
           <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
           <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-        <% end %>
+        <% end %></a>
 
       </div>
 
@@ -54,7 +54,9 @@
           <li class="games"><a href="#">Games&beta;</a></li>
           <li class="collections"><a href="#">Collections</a></li>
           <li class="members"><a href="#">Members</a></li>
+        
         </ul>
+
 
       </div>
 
@@ -67,15 +69,19 @@
     <div class="content-wrap">
 
       <section class="day">
+        <% @posts.each do |date, posts|%>
 
         <header class="day-header">
-          <h2>Today <span class="subtext">June 25th</span></h2>
+          <h2>Today <time datetime="<%= date.to_s %>"><%= date.strftime('%e %B') %></time>
+          </h2>
         </header>
+
 
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
 
         <%= yield %>
+        <% end %>
 
       </section>
 

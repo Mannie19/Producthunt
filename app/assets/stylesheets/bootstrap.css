@@ -1,4 +1,4 @@
-/*!
+/*/*/*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -44,7 +44,7 @@ template {
 }
 a {
   background-color: transparent;
-  font-style: none;
+
 }
 a:active,
 a:hover {
@@ -6799,3 +6799,4 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+*/*/
